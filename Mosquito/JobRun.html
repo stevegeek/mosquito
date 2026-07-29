@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="generator" content="Crystal Docs 1.20.3">
 <meta name="crystal_docs.project_version" content="2.0.0">
 <meta name="crystal_docs.project_name" content="mosquito">
 
@@ -573,7 +573,7 @@ JobRuns know how to:</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28type%3AString%2Cenqueue_time%3ATime%3DTime.utc%2Cid%3AString%7CNil%3Dnil%2Cretry_count%3AInt32%3D0%2Cstarted_at%3ATime%7CNil%3Dnil%2Cfinished_at%3ATime%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(type : String, enqueue_time : Time = <span class="t">Time</span>.utc, id : String | Nil = <span class="n">nil</span>, retry_count : Int32 = <span class="n">0</span>, started_at : Time | Nil = <span class="n">nil</span>, finished_at : Time | Nil = <span class="n">nil</span>)</a>
+        <a href="#new%28type%3AString%2Cenqueue_time%3ATime%3DTime.utc%2Cid%3AString%7CNil%3Dnil%2Cretry_count%3AInt32%3D0%2Cstarted_at%3ATime%7CNil%3Dnil%2Cfinished_at%3ATime%7CNil%3Dnil%2Cfailed_at%3ATime%7CNil%3Dnil%2Cerror_class%3AString%7CNil%3Dnil%2Cerror_message%3AString%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(type : String, enqueue_time : Time = <span class="t">Time</span>.utc, id : String | Nil = <span class="n">nil</span>, retry_count : Int32 = <span class="n">0</span>, started_at : Time | Nil = <span class="n">nil</span>, finished_at : Time | Nil = <span class="n">nil</span>, failed_at : Time | Nil = <span class="n">nil</span>, error_class : String | Nil = <span class="n">nil</span>, error_message : String | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -662,9 +662,24 @@ JobRuns know how to:</p>
       </li>
     
       <li class="entry-summary">
+        <a href="#error_class%3AString%7CNil-instance-method" class="signature"><strong>#error_class</strong> : String | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error_message%3AString%7CNil-instance-method" class="signature"><strong>#error_message</strong> : String | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#fail-instance-method" class="signature"><strong>#fail</strong></a>
         
           <div class="summary"><p>Fails this job run and make sure it's persisted as such.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#failed_at%3ATime%7CNil-instance-method" class="signature"><strong>#failed_at</strong> : Time | Nil</a>
         
       </li>
     
@@ -806,12 +821,12 @@ JobRuns know how to:</p>
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(type:String,enqueue_time:Time=Time.utc,id:String|Nil=nil,retry_count:Int32=0,started_at:Time|Nil=nil,finished_at:Time|Nil=nil)-class-method">
+    <div class="entry-detail" id="new(type:String,enqueue_time:Time=Time.utc,id:String|Nil=nil,retry_count:Int32=0,started_at:Time|Nil=nil,finished_at:Time|Nil=nil,failed_at:Time|Nil=nil,error_class:String|Nil=nil,error_message:String|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(type : String, enqueue_time : Time = <span class="t">Time</span>.utc, id : String | Nil = <span class="n">nil</span>, retry_count : Int32 = <span class="n">0</span>, started_at : Time | Nil = <span class="n">nil</span>, finished_at : Time | Nil = <span class="n">nil</span>)
+        def self.<strong>new</strong>(type : String, enqueue_time : Time = <span class="t">Time</span>.utc, id : String | Nil = <span class="n">nil</span>, retry_count : Int32 = <span class="n">0</span>, started_at : Time | Nil = <span class="n">nil</span>, finished_at : Time | Nil = <span class="n">nil</span>, failed_at : Time | Nil = <span class="n">nil</span>, error_class : String | Nil = <span class="n">nil</span>, error_message : String | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28type%3AString%2Cenqueue_time%3ATime%3DTime.utc%2Cid%3AString%7CNil%3Dnil%2Cretry_count%3AInt32%3D0%2Cstarted_at%3ATime%7CNil%3Dnil%2Cfinished_at%3ATime%7CNil%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28type%3AString%2Cenqueue_time%3ATime%3DTime.utc%2Cid%3AString%7CNil%3Dnil%2Cretry_count%3AInt32%3D0%2Cstarted_at%3ATime%7CNil%3Dnil%2Cfinished_at%3ATime%7CNil%3Dnil%2Cfailed_at%3ATime%7CNil%3Dnil%2Cerror_class%3AString%7CNil%3Dnil%2Cerror_message%3AString%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
@@ -1001,6 +1016,34 @@ Optionally, after a delay in seconds (handled by the backend).</p>
       </div>
     </div>
   
+    <div class="entry-detail" id="error_class:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>error_class</strong> : String | Nil
+
+        <a class="method-permalink" href="#error_class%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error_message:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>error_message</strong> : String | Nil
+
+        <a class="method-permalink" href="#error_message%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="fail-instance-method">
       <div class="signature">
         
@@ -1014,6 +1057,20 @@ Optionally, after a delay in seconds (handled by the backend).</p>
           <p>Fails this job run and make sure it's persisted as such.
 Clears the overseer_id since the job is no longer in-flight.</p>
         </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="failed_at:Time|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>failed_at</strong> : Time | Nil
+
+        <a class="method-permalink" href="#failed_at%3ATime%7CNil-instance-method">#</a>
+      </div>
       
       <br/>
       <div>
