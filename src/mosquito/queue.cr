@@ -143,6 +143,10 @@ module Mosquito
       name == other.name
     end
 
+    def hash(hasher)
+      name.hash(hasher)
+    end
+
     def flush
       backend.flush
     end
